@@ -1,7 +1,9 @@
 import { createCompany } from "../actions/CompanyActions";
+import { connectDB } from "../lib/db";
 import TechModel, { Tech } from "../models/Tech";
 
 const AddCompanyForm = async () => {
+  await connectDB();
   const frontendTech: Tech[] = await TechModel.find({
     category: "frontend",
   }).lean();
