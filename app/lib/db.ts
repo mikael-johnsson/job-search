@@ -6,7 +6,7 @@ if (!MONGO_URI) {
   throw new Error("MONGO_URI is not defined in environment variables");
 }
 
-// In Next.js dev mode, the module is re-evaluated on every hot reload.
+// In NextJS dev mode, the module is re-evaluated on every hot reload.
 // We cache the connection on the global object to prevent exhausting
 // the connection pool with a new connection on every reload.
 declare global {
