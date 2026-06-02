@@ -1,11 +1,11 @@
-import AddJobForm from "../components/AddJobForm";
+import AddCompanyForm from "../components/AddCompanyForm";
 
-const AddJobPage = () => {
+const AddCompanyPage = () => {
   return (
     <main className="max-w-2xl mx-auto p-4">
-      <AddJobForm />
+      <AddCompanyForm />
     </main>
   );
 };
 
-export default AddJobPage;
+export default AddCompanyPage;
