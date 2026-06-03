@@ -10,7 +10,7 @@ const CompanyList = async () => {
       <h2 className="col-span-4 text-center text-xl font-bold">Företag</h2>
       {companies.map((company) => (
         <Link
-          className="w-35 h-20 border flex flex-col items-center justify-center rounded hover:shadow-xl transition-shadow"
+          className="w-30 h-20 border flex flex-col items-center justify-center rounded hover:shadow-xl transition-shadow"
           key={company._id}
           href={`/${company._id}`}
         >
