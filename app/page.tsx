@@ -25,7 +25,7 @@ export default async function Home({ params }: HomePageProps) {
     otherTech: userOtherStack,
   } = await params;
 
-  console.log("Users frontendStack", userFrontendStack);
+  // console.log("Users frontendStack", userFrontendStack);
 
   // Connect to the database and fetch tech stacks for the forms
   await connectDB();
@@ -49,7 +49,7 @@ export default async function Home({ params }: HomePageProps) {
         <CompanyList />
         <TechStackList />
       </div>
-      <div className="flex flex-col justify-between gap-10 lg:flex-row mt-10">
+      {/* <div className="flex flex-col justify-between gap-10 lg:flex-row mt-10">
         <AddOwnStackForm
           frontendTech={frontendTech}
           backendTech={backendTech}
@@ -58,7 +58,7 @@ export default async function Home({ params }: HomePageProps) {
           otherTech={otherTech}
         />
         <CompanyMatch />
-      </div>
+      </div> */}
     </main>
   );
 }
