@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CompanyModel, { Company } from "../models/Company";
 
 type CompanyPageProps = {
@@ -9,7 +10,17 @@ const CompanyPage = async ({ params }: CompanyPageProps) => {
   const company: Company = await CompanyModel.findById(id).lean();
   return (
     <main className="max-w-2xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">{company.name}</h1>
+      <div className="flex mb-4 gap-5 items-center">
+        <h1 className="text-3xl font-bold">{company.name}</h1>
+
+        <Link
+          href={`/add-company/${company._id}`}
+          className="text-blue-500 hover:bg-blue-600 hover:text-white border rounded px-2 py-1"
+        >
+          Ändra företag
+        </Link>
+      </div>
+
       <div>Stad: {company.city}</div>
       <div>Antal anställda: {company.employees}</div>
       <div>

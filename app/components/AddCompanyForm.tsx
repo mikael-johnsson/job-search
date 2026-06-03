@@ -1,8 +1,9 @@
-import { createCompany } from "../actions/CompanyActions";
+import { createCompany, updateCompany } from "../actions/CompanyActions";
 import { connectDB } from "../lib/db";
+import { Company } from "../models/Company";
 import TechModel, { Tech } from "../models/Tech";
 
-const AddCompanyForm = async () => {
+const AddCompanyForm = async ({ company }: { company: Company | null }) => {
   await connectDB();
   const frontendTech: Tech[] = await TechModel.find({
     category: "frontend",
@@ -18,7 +19,12 @@ const AddCompanyForm = async () => {
     category: "databaser",
   }).lean();
   return (
-    <form action={createCompany} className="bg-white w-100 p-6 rounded shadow">
+    <form
+      action={
+        company?._id ? updateCompany.bind(null, company._id) : createCompany
+      }
+      className="bg-white w-100 p-6 rounded shadow"
+    >
       <h2 className="text-2xl font-bold mb-4">Lägg till arbetsplats</h2>
       <fieldset>
         <legend className="font-semibold mb-2">Allmän information</legend>
@@ -27,6 +33,7 @@ const AddCompanyForm = async () => {
           <input
             type="text"
             name="company"
+            defaultValue={company?.name ?? ""}
             className="w-60 p-2 border border-gray-300 rounded mt-1"
           />
         </label>
@@ -35,6 +42,7 @@ const AddCompanyForm = async () => {
           <input
             type="text"
             name="city"
+            defaultValue={company?.city ?? ""}
             className="w-60 p-2 border border-gray-300 rounded mt-1"
           />
         </label>
@@ -43,6 +51,7 @@ const AddCompanyForm = async () => {
           <input
             type="number"
             name="employees"
+            defaultValue={company?.employees ?? ""}
             className="w-20 p-2 border border-gray-300 rounded mt-1"
           />
         </label>
@@ -53,6 +62,7 @@ const AddCompanyForm = async () => {
         <select
           name="frontendTech"
           multiple
+          defaultValue={company?.frontendTechstack ?? []}
           className="w-45 p-2 border border-gray-300 rounded mt-1"
         >
           {frontendTech.map((tech) => (
@@ -65,6 +75,7 @@ const AddCompanyForm = async () => {
         <select
           name="backendTech"
           multiple
+          defaultValue={company?.backendTechstack ?? []}
           className="w-45 p-2 border border-gray-300 rounded mt-1"
         >
           {backendTech.map((tech) => (
@@ -77,6 +88,7 @@ const AddCompanyForm = async () => {
         <select
           name="testTech"
           multiple
+          defaultValue={company?.testTechstack ?? []}
           className="w-45 p-2 border border-gray-300 rounded mt-1"
         >
           {testTech.map((tech) => (
@@ -89,6 +101,7 @@ const AddCompanyForm = async () => {
         <select
           name="databaseTech"
           multiple
+          defaultValue={company?.databaseTechstack ?? []}
           className="w-45 p-2 border border-gray-300 rounded mt-1"
         >
           {databaseTech.map((tech) => (
@@ -101,6 +114,7 @@ const AddCompanyForm = async () => {
         <select
           name="otherTech"
           multiple
+          defaultValue={company?.otherTechstack ?? []}
           className="w-45 p-2 border border-gray-300 rounded mt-1"
         >
           {otherTech.map((tech) => (
@@ -112,9 +126,9 @@ const AddCompanyForm = async () => {
       </fieldset>
       <button
         type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors hover:cursor-pointer"
       >
-        Lägg till
+        {company ? "Uppdatera" : "Lägg till"}
       </button>
     </form>
   );

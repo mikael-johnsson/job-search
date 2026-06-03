@@ -4,7 +4,7 @@ import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: "Job Search",
-  description: "Find your dream job today",
+  description: "Hitta din techstack",
 };
 
 export default function RootLayout({
