@@ -40,7 +40,7 @@ const TechStackList = async () => {
           </ul>
         </div>
         <div>
-          <h4 className="text-lg font-semibold mb-2">Testing:</h4>
+          <h4 className="text-lg font-semibold mb-2">Testning:</h4>
           <ul>
             {commonTestingTech.map((tech: any) => (
               <li
@@ -54,7 +54,7 @@ const TechStackList = async () => {
           </ul>
         </div>
         <div>
-          <h4 className="text-lg font-semibold mb-2">Database:</h4>
+          <h4 className="text-lg font-semibold mb-2">Databaser:</h4>
           <ul>
             {commonDatabaseTech.map((tech: any) => (
               <li
@@ -68,7 +68,7 @@ const TechStackList = async () => {
           </ul>
         </div>
         <div>
-          <h4 className="text-lg font-semibold mb-2">Other:</h4>
+          <h4 className="text-lg font-semibold mb-2">Övrigt:</h4>
           <ul>
             {commonOtherTech.map((tech: any) => (
               <li
