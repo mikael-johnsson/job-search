@@ -1,13 +1,11 @@
 import { countCommonTech } from "../lib/countCommonTech";
 
 const TechStackList = async () => {
-  const [
-    commonFrontendTech,
-    commonBackendTech,
-    commonTestingTech,
-    commonDatabaseTech,
-    commonOtherTech,
-  ] = await countCommonTech();
+  const commonFrontendTech = await countCommonTech("frontendTechstack");
+  const commonBackendTech = await countCommonTech("backendTechstack");
+  const commonTestingTech = await countCommonTech("testTechstack");
+  const commonDatabaseTech = await countCommonTech("databaseTechstack");
+  const commonOtherTech = await countCommonTech("otherTechstack");
 
   return (
     <div className="w-1/2 ">
