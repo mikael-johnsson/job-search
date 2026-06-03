@@ -9,7 +9,9 @@ const TechStackList = async () => {
 
   return (
     <div className="w-full lg:w-1/2 ">
-      <h2 className="text-center text-xl font-bold mb-5">Vanligaste tech</h2>
+      <h2 className="text-center text-xl font-bold mb-5">
+        Vanligaste teknologierna
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div>
           <h4 className="text-lg font-semibold mb-2">Frontend:</h4>
