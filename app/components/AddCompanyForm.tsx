@@ -5,7 +5,7 @@ import { Company } from "../models/Company";
 
 const AddCompanyForm = async ({ company }: { company: Company | null }) => {
   await connectDB();
-  const [frontendTech, backendTech, testTech, otherTech, databaseTech] =
+  const [frontendTech, backendTech, testTech, databaseTech, otherTech] =
     await getTechStacks();
 
   return (

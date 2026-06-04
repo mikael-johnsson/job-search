@@ -9,5 +9,4 @@ export const createTech = async (formData: FormData) => {
   const category = formData.get("category") as string;
 
   const result = await TechModel.create({ name, category });
-  console.log("Result from tech creation:", await result);
 };
