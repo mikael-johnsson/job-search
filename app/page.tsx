@@ -1,10 +1,7 @@
-import AddOwnStackForm from "./components/AddOwnStackForm";
 import CompanyList from "./components/CompanyList";
-import CompanyMatch from "./components/CompanyMatch";
 import TechStackList from "./components/TechStackList";
 import { connectDB } from "./lib/db";
 import { getTechStacks } from "./lib/techService";
-import TechModel, { Tech } from "./models/Tech";
 
 type HomePageProps = {
   searchParams: Promise<{

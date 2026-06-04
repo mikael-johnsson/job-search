@@ -66,7 +66,7 @@ const CompanyList = async ({
         </span>
         <span className="text-sm bg-yellow-300 p-2 rounded-2xl">500+ pers</span>
       </div>
-      <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
+      <div className="grid gap-2 grid-cols-2 md:grid-cols-5">
         {companies.map((company) => (
           <CompanyListItem key={company._id} {...company} />
         ))}

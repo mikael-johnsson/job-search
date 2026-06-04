@@ -10,10 +10,10 @@ export const getTechStacks = async () => {
   const testTech: Tech[] = await TechModel.find({
     category: "testning",
   }).lean();
-  const otherTech: Tech[] = await TechModel.find({ category: "ovrigt" }).lean();
   const databaseTech: Tech[] = await TechModel.find({
     category: "databaser",
   }).lean();
+  const otherTech: Tech[] = await TechModel.find({ category: "ovrigt" }).lean();
 
   const toClientTech = (items: any[]): Tech[] =>
     items.map((item) => ({
@@ -26,7 +26,7 @@ export const getTechStacks = async () => {
     toClientTech(frontendTech),
     toClientTech(backendTech),
     toClientTech(testTech),
-    toClientTech(otherTech),
     toClientTech(databaseTech),
+    toClientTech(otherTech),
   ];
 };
