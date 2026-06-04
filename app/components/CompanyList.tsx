@@ -32,11 +32,11 @@ const CompanyList = async ({
   const uo = filterOtherStack.filter(Boolean);
 
   const filters: Record<string, any>[] = [];
-  if (uf.length) filters.push({ frontendTechstack: { $in: uf } });
-  if (ub.length) filters.push({ backendTechstack: { $in: ub } });
-  if (ut.length) filters.push({ testTechstack: { $in: ut } });
-  if (ud.length) filters.push({ databaseTechstack: { $in: ud } });
-  if (uo.length) filters.push({ otherTechstack: { $in: uo } });
+  if (uf.length) filters.push({ frontendTechstack: { $all: uf } });
+  if (ub.length) filters.push({ backendTechstack: { $all: ub } });
+  if (ut.length) filters.push({ testTechstack: { $all: ut } });
+  if (ud.length) filters.push({ databaseTechstack: { $all: ud } });
+  if (uo.length) filters.push({ otherTechstack: { $all: uo } });
 
   const query = filters.length ? { $and: filters } : {};
   const companies: Company[] = await CompanyModel.find(query).lean();
@@ -62,7 +62,7 @@ const CompanyList = async ({
       </div>
       <div className="grid gap-2 grid-cols-2 md:grid-cols-5">
         {companies.map((company) => (
-          <CompanyListItem key={company._id} {...company} />
+          <CompanyListItem key={company._id} company={company} queryString="" />
         ))}
       </div>
     </div>

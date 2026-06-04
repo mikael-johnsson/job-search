@@ -29,12 +29,30 @@ const MatchCompanyList = async ({
     (stack) => stack.length === 0,
   );
 
+  const buildQuery = (params: Record<string, string[]>) => {
+    const searchParams = new URLSearchParams();
+
+    Object.entries(params).forEach(([key, values]) => {
+      values.forEach((value) => searchParams.append(key, value));
+    });
+
+    return searchParams.toString();
+  };
+
+  const queryString = buildQuery({
+    userFrontendTech: frontendTech,
+    userBackendTech: backendTech,
+    userTestTech: testTech,
+    userDatabaseTech: databaseTech,
+    userOtherTech: otherTech,
+  });
+
   const filters: Record<string, unknown>[] = [];
-  if (uf.length) filters.push({ frontendTechstack: { $in: uf } });
-  if (ub.length) filters.push({ backendTechstack: { $in: ub } });
-  if (ut.length) filters.push({ testTechstack: { $in: ut } });
-  if (ud.length) filters.push({ databaseTechstack: { $in: ud } });
-  if (uo.length) filters.push({ otherTechstack: { $in: uo } });
+  if (uf.length) filters.push({ frontendTechstack: { $all: uf } });
+  if (ub.length) filters.push({ backendTechstack: { $all: ub } });
+  if (ut.length) filters.push({ testTechstack: { $all: ut } });
+  if (ud.length) filters.push({ databaseTechstack: { $all: ud } });
+  if (uo.length) filters.push({ otherTechstack: { $all: uo } });
 
   const query = allPropsEmpty ? {} : { $and: filters };
   const companies: Company[] = await CompanyModel.find(query).lean();
@@ -56,11 +74,15 @@ const MatchCompanyList = async ({
       <div className="grid gap-2 grid-cols-2 md:grid-cols-5">
         {allPropsEmpty ? (
           <p className="col-span-full text-center">
-            Välj teknologier för att se matchande företag.
+            Välj din tech stack för att se matchande företag.
           </p>
         ) : companies.length ? (
           companies.map((company) => (
-            <CompanyListItem key={company._id} {...company} />
+            <CompanyListItem
+              key={company._id}
+              company={company}
+              queryString={queryString}
+            />
           ))
         ) : (
           <p className="col-span-full text-center">

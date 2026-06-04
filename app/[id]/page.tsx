@@ -3,11 +3,37 @@ import CompanyModel, { Company } from "../models/Company";
 
 type CompanyPageProps = {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{
+    userFrontendTech?: string | string[];
+    userBackendTech?: string | string[];
+    userTestTech?: string | string[];
+    userDatabaseTech?: string | string[];
+    userOtherTech?: string | string[];
+  }>;
 };
 
-const CompanyPage = async ({ params }: CompanyPageProps) => {
+const CompanyPage = async ({ params, searchParams }: CompanyPageProps) => {
   const { id } = await params;
   const company: Company = await CompanyModel.findById(id).lean();
+
+  const toArray = (v?: string | string[]) => {
+    if (!v) return [];
+    return Array.isArray(v) ? v : [v];
+  };
+
+  const {
+    userFrontendTech,
+    userBackendTech,
+    userTestTech,
+    userDatabaseTech,
+    userOtherTech,
+  } = await searchParams;
+
+  const userFrontEndTechArray = toArray(userFrontendTech);
+  const userBackendTechArray = toArray(userBackendTech);
+  const userTestTechArray = toArray(userTestTech);
+  const userDatabaseTechArray = toArray(userDatabaseTech);
+  const userOtherTechArray = toArray(userOtherTech);
   return (
     <main className="max-w-2xl mx-auto p-4">
       <div className="flex mb-4 gap-5 items-center">
@@ -31,7 +57,16 @@ const CompanyPage = async ({ params }: CompanyPageProps) => {
             </h3>
             <ul className=" list-inside">
               {company.frontendTechstack.map((tech) => (
-                <li key={tech}>{tech}</li>
+                <li
+                  key={tech}
+                  className={
+                    userFrontEndTechArray.includes(tech)
+                      ? "text-green-700 font-bold"
+                      : ""
+                  }
+                >
+                  {tech}
+                </li>
               ))}
             </ul>
           </>
