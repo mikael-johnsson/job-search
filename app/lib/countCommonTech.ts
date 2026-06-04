@@ -10,7 +10,7 @@ export const countCommonTech = async (techStack: string) => {
       },
     },
     { $sort: { count: -1 } }, // Sortera efter högst antal först
-    { $limit: 3 }, // Ta endast de tre vanligaste
+    { $limit: 5 }, // Ta endast de fem vanligaste
   ]);
 
   return mostCommonTech;

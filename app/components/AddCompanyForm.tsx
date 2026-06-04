@@ -1,23 +1,13 @@
 import { createCompany, updateCompany } from "../actions/CompanyActions";
 import { connectDB } from "../lib/db";
+import { getTechStacks } from "../lib/techService";
 import { Company } from "../models/Company";
-import TechModel, { Tech } from "../models/Tech";
 
 const AddCompanyForm = async ({ company }: { company: Company | null }) => {
   await connectDB();
-  const frontendTech: Tech[] = await TechModel.find({
-    category: "frontend",
-  }).lean();
-  const backendTech: Tech[] = await TechModel.find({
-    category: "backend",
-  }).lean();
-  const testTech: Tech[] = await TechModel.find({
-    category: "testning",
-  }).lean();
-  const otherTech: Tech[] = await TechModel.find({ category: "ovrigt" }).lean();
-  const databaseTech: Tech[] = await TechModel.find({
-    category: "databaser",
-  }).lean();
+  const [frontendTech, backendTech, testTech, otherTech, databaseTech] =
+    await getTechStacks();
+
   return (
     <form
       action={
