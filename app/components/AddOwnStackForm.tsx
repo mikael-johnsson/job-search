@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Tech } from "../models/Tech";
 
 type AddOwnStackFormProps = {
@@ -20,12 +21,12 @@ const AddOwnStackForm = async ({
 }: AddOwnStackFormProps) => {
   return (
     <div className="bg-white w-120 p-6 rounded border">
-      <form action="/" method="GET">
+      <form action="/match-stack" method="GET">
         <h2 className="text-2xl font-bold mb-4">Lägg till egen techstack</h2>
         <fieldset>
           <label className="block mb-2 font-medium">Frontend</label>
           <select
-            name="frontendTech"
+            name="userFrontendTech"
             multiple
             className="w-45 p-2 border border-gray-300 rounded mt-1"
           >
@@ -37,7 +38,7 @@ const AddOwnStackForm = async ({
           </select>
           <label className="block mb-2 font-medium">Backend</label>
           <select
-            name="backendTech"
+            name="userBackendTech"
             multiple
             className="w-45 p-2 border border-gray-300 rounded mt-1"
           >
@@ -49,7 +50,7 @@ const AddOwnStackForm = async ({
           </select>
           <label className="block mb-2 font-medium">Testning</label>
           <select
-            name="testTech"
+            name="userTestTech"
             multiple
             className="w-45 p-2 border border-gray-300 rounded mt-1"
           >
@@ -61,7 +62,7 @@ const AddOwnStackForm = async ({
           </select>
           <label className="block mb-2 font-medium">Databaser</label>
           <select
-            name="databaseTech"
+            name="userDatabaseTech"
             multiple
             className="w-45 p-2 border border-gray-300 rounded mt-1"
           >
@@ -73,7 +74,7 @@ const AddOwnStackForm = async ({
           </select>
           <label className="block mb-2 font-medium">Övrigt</label>
           <select
-            name="otherTech"
+            name="userOtherTech"
             multiple
             className="w-45 p-2 border border-gray-300 rounded mt-1"
           >
@@ -84,12 +85,20 @@ const AddOwnStackForm = async ({
             ))}
           </select>
         </fieldset>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 mt-3 rounded hover:bg-blue-600 transition-colors hover:cursor-pointer"
-        >
-          Lägg till
-        </button>
+        <div className="flex gap-2">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 mt-3 rounded hover:bg-blue-600 transition-colors hover:cursor-pointer"
+          >
+            Lägg till
+          </button>
+          <Link
+            href="/match-stack"
+            className="bg-blue-500 text-white px-4 py-2 mt-3 rounded hover:bg-blue-600 transition-colors hover:cursor-pointer"
+          >
+            Rensa val
+          </Link>
+        </div>
       </form>
     </div>
   );

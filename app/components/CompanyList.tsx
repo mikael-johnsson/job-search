@@ -3,39 +3,33 @@ import { connectDB } from "../lib/db";
 import CompanyListItem from "./CompanyListItem";
 import CompanyFilter from "./CompanyFilter";
 import { Tech } from "../models/Tech";
+import { getTechStacks } from "../lib/techService";
 
 type CompanyListProps = {
-  frontendTech: Tech[];
-  backendTech: Tech[];
-  testTech: Tech[];
-  databaseTech: Tech[];
-  otherTech: Tech[];
-  userFrontendStack: string[];
-  userBackendStack: string[];
-  userTestStack: string[];
-  userDatabaseStack: string[];
-  userOtherStack: string[];
+  filterFrontendStack: string[];
+  filterBackendStack: string[];
+  filterTestStack: string[];
+  filterDatabaseStack: string[];
+  filterOtherStack: string[];
 };
 const CompanyList = async ({
-  frontendTech,
-  backendTech,
-  testTech,
-  databaseTech,
-  otherTech,
-  userFrontendStack,
-  userBackendStack,
-  userTestStack,
-  userDatabaseStack,
-  userOtherStack,
+  filterFrontendStack,
+  filterBackendStack,
+  filterTestStack,
+  filterDatabaseStack,
+  filterOtherStack,
 }: CompanyListProps) => {
   await connectDB();
 
+  const [frontendTech, backendTech, testTech, databaseTech, otherTech] =
+    await getTechStacks();
+
   // Remove empty values from the user stacks
-  const uf = userFrontendStack.filter(Boolean);
-  const ub = userBackendStack.filter(Boolean);
-  const ut = userTestStack.filter(Boolean);
-  const ud = userDatabaseStack.filter(Boolean);
-  const uo = userOtherStack.filter(Boolean);
+  const uf = filterFrontendStack.filter(Boolean);
+  const ub = filterBackendStack.filter(Boolean);
+  const ut = filterTestStack.filter(Boolean);
+  const ud = filterDatabaseStack.filter(Boolean);
+  const uo = filterOtherStack.filter(Boolean);
 
   const filters: Record<string, any>[] = [];
   if (uf.length) filters.push({ frontendTechstack: { $in: uf } });

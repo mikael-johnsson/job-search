@@ -10,6 +10,9 @@ const Header = () => {
             <Link href="/">HEM</Link>
           </li>
           <li>
+            <Link href="/match-stack">MATCHA DIN STACK</Link>
+          </li>
+          <li>
             <Link href="/add-company">LÄGG TILL FÖRETAG</Link>
           </li>
           <li>
