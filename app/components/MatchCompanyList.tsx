@@ -1,3 +1,4 @@
+import { buildQueryString } from "../lib/buildQueryString";
 import { connectDB } from "../lib/db";
 import CompanyModel, { Company } from "../models/Company";
 import CompanyListItem from "./CompanyListItem";
@@ -29,17 +30,7 @@ const MatchCompanyList = async ({
     (stack) => stack.length === 0,
   );
 
-  const buildQuery = (params: Record<string, string[]>) => {
-    const searchParams = new URLSearchParams();
-
-    Object.entries(params).forEach(([key, values]) => {
-      values.forEach((value) => searchParams.append(key, value));
-    });
-
-    return searchParams.toString();
-  };
-
-  const queryString = buildQuery({
+  const queryString = buildQueryString({
     userFrontendTech: frontendTech,
     userBackendTech: backendTech,
     userTestTech: testTech,

@@ -80,7 +80,16 @@ const CompanyPage = async ({ params, searchParams }: CompanyPageProps) => {
             </h3>
             <ul className=" list-inside">
               {company.backendTechstack.map((tech) => (
-                <li key={tech}>{tech}</li>
+                <li
+                  className={
+                    userBackendTechArray.includes(tech)
+                      ? "text-green-700 font-bold"
+                      : ""
+                  }
+                  key={tech}
+                >
+                  {tech}
+                </li>
               ))}
             </ul>
           </>
@@ -92,7 +101,16 @@ const CompanyPage = async ({ params, searchParams }: CompanyPageProps) => {
             <h3 className="text-xl font-semibold mt-4 mb-2">Test Techstack</h3>
             <ul className=" list-inside">
               {company.testTechstack.map((tech) => (
-                <li key={tech}>{tech}</li>
+                <li
+                  className={
+                    userTestTechArray.includes(tech)
+                      ? "text-green-700 font-bold"
+                      : ""
+                  }
+                  key={tech}
+                >
+                  {tech}
+                </li>
               ))}
             </ul>
           </>
@@ -106,7 +124,16 @@ const CompanyPage = async ({ params, searchParams }: CompanyPageProps) => {
             </h3>
             <ul className="list-inside">
               {company.databaseTechstack.map((tech) => (
-                <li key={tech}>{tech}</li>
+                <li
+                  className={
+                    userDatabaseTechArray.includes(tech)
+                      ? "text-green-700 font-bold"
+                      : ""
+                  }
+                  key={tech}
+                >
+                  {tech}
+                </li>
               ))}
             </ul>
           </>
@@ -118,7 +145,16 @@ const CompanyPage = async ({ params, searchParams }: CompanyPageProps) => {
             <h3 className="text-xl font-semibold mt-4 mb-2">Övrig Techstack</h3>
             <ul className=" list-inside">
               {company.otherTechstack.map((tech) => (
-                <li key={tech}>{tech}</li>
+                <li
+                  className={
+                    userOtherTechArray.includes(tech)
+                      ? "text-green-700 font-bold"
+                      : ""
+                  }
+                  key={tech}
+                >
+                  {tech}
+                </li>
               ))}
             </ul>
           </>
